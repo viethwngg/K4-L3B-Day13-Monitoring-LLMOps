@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>K4-L3B LLMOps Dashboard</title>
+<style>
+:root { color-scheme: dark; font-family: Inter, Segoe UI, sans-serif; background:#08111f; color:#e6edf7; }
+body { margin:0; padding:32px; background:radial-gradient(circle at top right,#12284a,#08111f 48%); }
+main { max-width:1180px; margin:auto; }
+header { display:flex; justify-content:space-between; gap:24px; align-items:end; margin-bottom:24px; }
+h1 { margin:0 0 6px; font-size:28px; font-weight:600; }
+.sub { color:#9fb0c8; font-size:14px; }
+.grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.panel { background:#0f1c2e; border:1px solid #223652; border-radius:14px; padding:20px; min-height:180px; }
+.panel h2 { margin:0 0 16px; font-size:15px; font-weight:500; color:#b9c7da; }
+.value { font-size:34px; font-weight:600; font-variant-numeric:tabular-nums; }
+.unit { color:#91a2ba; font-size:13px; margin-left:5px; }
+.facts { display:grid; grid-template-columns:repeat(2,1fr); gap:8px 14px; margin-top:16px; font-size:13px; }
+.facts span { color:#91a2ba; }
+.facts strong { display:block; color:#e6edf7; margin-top:3px; font-weight:500; }
+.bar { height:8px; margin-top:18px; background:#24344a; border-radius:5px; position:relative; overflow:visible; }
+.fill { display:block; height:100%; border-radius:5px; }
+.healthy { background:#37c99b; } .breach { background:#ff6b6b; }
+.threshold { position:absolute; left:100%; top:-4px; width:2px; height:16px; background:#f2c94c; }
+.threshold-label { margin-top:8px; color:#91a2ba; font-size:12px; }
+.footer { margin-top:18px; display:flex; justify-content:space-between; color:#7f92ad; font-size:12px; }
+@media (max-width:850px) { .grid { grid-template-columns:1fr 1fr; } }
+@media (max-width:560px) { body { padding:18px; } header { display:block; } .grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body><main>
+<header><div><h1>Monitoring &amp; LLMOps</h1><div class="sub">Metrics → Logs → Traces · 60-minute operational view</div></div><div class="sub">2026-09-30 10:42 – 11:42 SE Asia Standard Time</div></header>
+<section class="grid">
+<article class="panel"><h2>Latency &amp; TTFT</h2><div class="value">11217<span class="unit">ms P95</span></div><div class="bar" role="img" aria-label="Value 11217.00, threshold 3000.00"><span class="fill breach" style="width:100.0%"></span><span class="threshold" aria-hidden="true"></span></div><div class="threshold-label">SLO ≤ 3000 ms</div><div class="facts"><span>P50<strong>160 ms</strong></span><span>P99<strong>11246 ms</strong></span><span>TTFT P95<strong>51 ms</strong></span><span>Responses<strong>28</strong></span></div></article>
+<article class="panel"><h2>Traffic</h2><div class="value">28<span class="unit">requests</span></div><div class="bar" role="img" aria-label="Value 0.55, threshold 1.00"><span class="fill breach" style="width:55.4%"></span><span class="threshold" aria-hidden="true"></span></div><div class="threshold-label">Traffic floor ≥ 1 request/min</div><div class="facts"><span>Observed rate<strong>0.55/min</strong></span><span>Window<strong>60 min</strong></span></div></article>
+<article class="panel"><h2>Errors &amp; retrieval</h2><div class="value">0.0<span class="unit">% errors</span></div><div class="bar" role="img" aria-label="Value 0.00, threshold 2.00"><span class="fill healthy" style="width:0.0%"></span><span class="threshold" aria-hidden="true"></span></div><div class="threshold-label">Error guardrail ≤ 2%</div><div class="facts"><span>Failures<strong>0</strong></span><span>Retrieval success<strong>100.0%</strong></span></div></article>
+<article class="panel"><h2>Cost</h2><div class="value">$0.0597<span class="unit">USD</span></div><div class="bar" role="img" aria-label="Value 0.06, threshold 2.50"><span class="fill healthy" style="width:2.4%"></span><span class="threshold" aria-hidden="true"></span></div><div class="threshold-label">Window budget ≤ $2.50</div><div class="facts"><span>Average/request<strong>$0.0021</strong></span><span>Responses<strong>28</strong></span></div></article>
+<article class="panel"><h2>Tokens</h2><div class="value">4,747<span class="unit">total</span></div><div class="bar" role="img" aria-label="Value 4747.00, threshold 50000.00"><span class="fill healthy" style="width:9.5%"></span><span class="threshold" aria-hidden="true"></span></div><div class="threshold-label">Window guardrail ≤ 50,000</div><div class="facts"><span>Input<strong>955</strong></span><span>Output<strong>3,792</strong></span></div></article>
+<article class="panel"><h2>Quality proxy</h2><div class="value">0.86<span class="unit">/ 1.00</span></div><div class="bar" role="img" aria-label="Value 0.86, threshold 0.75"><span class="fill healthy" style="width:100.0%"></span><span class="threshold" aria-hidden="true"></span></div><div class="threshold-label">Quality floor ≥ 0.75</div><div class="facts"><span>Samples<strong>28</strong></span><span>Status<strong>Healthy</strong></span></div></article>
+</section>
+<div class="footer"><span>Source: data\logs.jsonl</span><span>Generated from structured logs; no raw prompt or PII shown.</span></div>
+</main></body></html>
