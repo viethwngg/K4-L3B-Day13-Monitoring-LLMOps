@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import os
 import time
+from contextlib import nullcontext
 from dataclasses import dataclass
+from typing import Any
 
 from . import metrics
 from .mock_llm import FakeLLM
@@ -21,6 +23,19 @@ class AgentResult:
     tokens_out: int
     cost_usd: float
     quality_score: float
+
+
+class _NoopObservation:
+    def update(self, **_: Any) -> None:
+        return None
+
+
+def _start_child_observation(client: Any, **kwargs: Any):
+    """Use the Langfuse v4 context API while keeping local/test fallbacks usable."""
+    start = getattr(client, "start_as_current_observation", None)
+    if callable(start):
+        return start(**kwargs)
+    return nullcontext(_NoopObservation())
 
 
 class LabAgent:
@@ -51,7 +66,29 @@ class LabAgent:
             },
         ):
             started = time.perf_counter()
-            docs = retrieve(message)
+            with _start_child_observation(
+                langfuse_client,
+                name="retrieval",
+                as_type="retriever",
+                input={"query_preview": summarize_text(message)},
+                metadata={"correlation_id": correlation_id, "feature": feature},
+            ) as retrieval_observation:
+                try:
+                    docs = retrieve(message)
+                except Exception:
+                    metrics.record_retrieval(False)
+                    retrieval_observation.update(
+                        metadata={"success": False},
+                        level="ERROR",
+                        status_message="Retrieval failed",
+                    )
+                    raise
+                metrics.record_retrieval(True)
+                retrieval_observation.update(
+                    output={"doc_count": len(docs)},
+                    metadata={"success": True, "doc_count": len(docs)},
+                )
+
             prompt = resolve_prompt(
                 langfuse_client,
                 feature=feature,
@@ -71,13 +108,47 @@ class LabAgent:
                 },
                 version=prompt.version,
             )
-            # TODO (CP2): instrument retrieve() and FakeLLM.generate() as child
-            # observations. The nested generation must receive prompt, usage and cost.
             with propagate_attributes(prompt=prompt.managed_prompt):
-                response = self.llm.generate(prompt.text)
+                generation_kwargs = {
+                    "name": "generation",
+                    "as_type": "generation",
+                    "input": {"prompt_preview": summarize_text(prompt.text)},
+                    "model": self.model,
+                    "metadata": {
+                        "correlation_id": correlation_id,
+                        "prompt_name": prompt.name,
+                        "prompt_label": prompt.label,
+                        "prompt_version": prompt.version,
+                    },
+                }
+                if prompt.managed_prompt is not None:
+                    generation_kwargs["prompt"] = prompt.managed_prompt
+
+                with _start_child_observation(
+                    langfuse_client, **generation_kwargs
+                ) as generation_observation:
+                    response = self.llm.generate(prompt.text)
+                    cost_usd = self._estimate_cost(
+                        response.usage.input_tokens, response.usage.output_tokens
+                    )
+                    generation_observation.update(
+                        output={"answer_preview": summarize_text(response.text)},
+                        usage_details={
+                            "input": response.usage.input_tokens,
+                            "output": response.usage.output_tokens,
+                            "total": response.usage.input_tokens
+                            + response.usage.output_tokens,
+                        },
+                        cost_details={"total": cost_usd},
+                        metadata={
+                            "input_tokens": response.usage.input_tokens,
+                            "output_tokens": response.usage.output_tokens,
+                            "cost_usd": cost_usd,
+                            "ttft_ms": response.ttft_ms,
+                        },
+                    )
             quality_score = self._heuristic_quality(message, response.text, docs)
             latency_ms = int((time.perf_counter() - started) * 1000)
-            cost_usd = self._estimate_cost(response.usage.input_tokens, response.usage.output_tokens)
 
         metrics.record_request(
             latency_ms=latency_ms,

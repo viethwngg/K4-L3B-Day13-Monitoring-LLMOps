@@ -1,6 +1,0 @@
-Structured log sample from data/logs.jsonl
-
-{"service": "api", "payload": {"message_preview": "Here is my phone [REDACTED_PHONE_VN], what should be logged?"}, "event": "request_received", "feature": "qa", "model": "claude-sonnet-4-5", "env": "dev", "session_id": "s05", "correlation_id": "req-0697880c", "user_id_hash": "64f6ec689229", "level": "info", "ts": "2026-09-30T03:35:37.428806Z"}
-{"service": "api", "latency_ms": 4700, "ttft_ms": 50, "tokens_in": 33, "tokens_out": 133, "cost_usd": 0.002094, "quality_score": 0.9, "tool_name": "retrieval", "tool_success": true, "payload": {"answer_preview": "Starter answer. You should improve this output logic and add better quality chec..."}, "event": "response_sent", "feature": "qa", "model": "claude-sonnet-4-5", "env": "dev", "session_id": "s05", "correlation_id": "req-0697880c", "user_id_hash": "64f6ec689229", "level": "info", "ts": "2026-09-30T03:35:44.897662Z"}
-
-Both events share correlation_id=req-0697880c. The user ID is hashed and the phone number is redacted before JSON rendering.

@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+<title id="title">K4-L3B Monitoring and LLMOps dashboard</title>
+<desc id="desc">Six panels for latency, traffic, errors, cost, tokens, and quality from structured logs.</desc>
+<rect width="1200" height="760" fill="#08111f"/>
+<text x="44" y="58" fill="#e6edf7" font-family="Segoe UI, sans-serif" font-size="30" font-weight="600">Monitoring &amp; LLMOps</text>
+<text x="44" y="86" fill="#9fb0c8" font-family="Segoe UI, sans-serif" font-size="15">Metrics → Logs → Traces · 60-minute operational view</text>
+<rect x="40" y="120" width="345" height="255" rx="14" fill="#0f1c2e" stroke="#223652"/>
+<text x="62" y="156" fill="#b9c7da" font-family="Segoe UI, sans-serif" font-size="16">Latency &amp; TTFT</text>
+<text x="62" y="212" fill="#e6edf7" font-family="Segoe UI, sans-serif" font-size="36" font-weight="600">12683</text>
+<text x="62" y="237" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="14">ms P95</text>
+<rect x="62" y="257" width="300" height="8" rx="4" fill="#24344a"/>
+<rect x="62" y="257" width="300.0" height="8" rx="4" fill="#ff6b6b"/>
+<text x="62" y="288" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="13">SLO ≤ 3000 ms</text>
+<text x="62" y="322" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="12">P50: <tspan fill="#e6edf7">4660 ms</tspan></text>
+<text x="222" y="322" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="12">P99: <tspan fill="#e6edf7">13270 ms</tspan></text>
+<text x="62" y="357" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="12">TTFT P95: <tspan fill="#e6edf7">51 ms</tspan></text>
+<text x="222" y="357" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="12">Responses: <tspan fill="#e6edf7">30</tspan></text>
+<rect x="425" y="120" width="345" height="255" rx="14" fill="#0f1c2e" stroke="#223652"/>
+<text x="447" y="156" fill="#b9c7da" font-family="Segoe UI, sans-serif" font-size="16">Traffic</text>
+<text x="447" y="212" fill="#e6edf7" font-family="Segoe UI, sans-serif" font-size="36" font-weight="600">30</text>
+<text x="447" y="237" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="14">requests</text>
+<rect x="447" y="257" width="300" height="8" rx="4" fill="#24344a"/>
+<rect x="447" y="257" width="300.0" height="8" rx="4" fill="#37c99b"/>
+<text x="447" y="288" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="13">Traffic floor ≥ 1 request/min</text>
+<text x="447" y="322" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="12">Observed rate: <tspan fill="#e6edf7">2.67/min</tspan></text>
+<text x="607" y="322" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="12">Window: <tspan fill="#e6edf7">60 min</tspan></text>
+<rect x="810" y="120" width="345" height="255" rx="14" fill="#0f1c2e" stroke="#223652"/>
+<text x="832" y="156" fill="#b9c7da" font-family="Segoe UI, sans-serif" font-size="16">Errors &amp; retrieval</text>
+<text x="832" y="212" fill="#e6edf7" font-family="Segoe UI, sans-serif" font-size="36" font-weight="600">0.0</text>
+<text x="832" y="237" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="14">% errors</text>
+<rect x="832" y="257" width="300" height="8" rx="4" fill="#24344a"/>
+<rect x="832" y="257" width="0.0" height="8" rx="4" fill="#37c99b"/>
+<text x="832" y="288" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="13">Error guardrail ≤ 2%</text>
+<text x="832" y="322" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="12">Failures: <tspan fill="#e6edf7">0</tspan></text>
+<text x="992" y="322" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="12">Retrieval success: <tspan fill="#e6edf7">100.0%</tspan></text>
+<rect x="40" y="415" width="345" height="255" rx="14" fill="#0f1c2e" stroke="#223652"/>
+<text x="62" y="451" fill="#b9c7da" font-family="Segoe UI, sans-serif" font-size="16">Cost</text>
+<text x="62" y="507" fill="#e6edf7" font-family="Segoe UI, sans-serif" font-size="36" font-weight="600">$0.0600</text>
+<text x="62" y="532" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="14">USD</text>
+<rect x="62" y="552" width="300" height="8" rx="4" fill="#24344a"/>
+<rect x="62" y="552" width="7.2" height="8" rx="4" fill="#37c99b"/>
+<text x="62" y="583" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="13">Window budget ≤ $2.50</text>
+<text x="62" y="617" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="12">Average/request: <tspan fill="#e6edf7">$0.0020</tspan></text>
+<text x="222" y="617" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="12">Responses: <tspan fill="#e6edf7">30</tspan></text>
+<rect x="425" y="415" width="345" height="255" rx="14" fill="#0f1c2e" stroke="#223652"/>
+<text x="447" y="451" fill="#b9c7da" font-family="Segoe UI, sans-serif" font-size="16">Tokens</text>
+<text x="447" y="507" fill="#e6edf7" font-family="Segoe UI, sans-serif" font-size="36" font-weight="600">4,809</text>
+<text x="447" y="532" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="14">total</text>
+<rect x="447" y="552" width="300" height="8" rx="4" fill="#24344a"/>
+<rect x="447" y="552" width="28.8" height="8" rx="4" fill="#37c99b"/>
+<text x="447" y="583" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="13">Window guardrail ≤ 50,000</text>
+<text x="447" y="617" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="12">Input: <tspan fill="#e6edf7">1,014</tspan></text>
+<text x="607" y="617" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="12">Output: <tspan fill="#e6edf7">3,795</tspan></text>
+<rect x="810" y="415" width="345" height="255" rx="14" fill="#0f1c2e" stroke="#223652"/>
+<text x="832" y="451" fill="#b9c7da" font-family="Segoe UI, sans-serif" font-size="16">Quality proxy</text>
+<text x="832" y="507" fill="#e6edf7" font-family="Segoe UI, sans-serif" font-size="36" font-weight="600">0.88</text>
+<text x="832" y="532" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="14">/ 1.00</text>
+<rect x="832" y="552" width="300" height="8" rx="4" fill="#24344a"/>
+<rect x="832" y="552" width="300.0" height="8" rx="4" fill="#37c99b"/>
+<text x="832" y="583" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="13">Quality floor ≥ 0.75</text>
+<text x="832" y="617" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="12">Samples: <tspan fill="#e6edf7">30</tspan></text>
+<text x="992" y="617" fill="#91a2ba" font-family="Segoe UI, sans-serif" font-size="12">Status: <tspan fill="#e6edf7">Healthy</tspan></text>
+<text x="44" y="735" fill="#7f92ad" font-family="Segoe UI, sans-serif" font-size="13">Source: data/logs.jsonl · Aggregate metrics only · No raw prompt or PII</text>
+</svg>

@@ -1,0 +1,16 @@
+Practice only — not official CP3 evidence
+
+Scenario: rag_slow
+Observed metric: latency P95 = 4700 ms, above the 3000 ms SLO threshold
+TTFT P95: 51 ms
+Error rate: 0.0%
+Retrieval success rate: 100.0%
+Representative correlation_id: req-0697880c (latency_ms=4700)
+
+Interpretation:
+- Metrics identify elevated end-to-end latency.
+- The response log identifies an affected request by correlation_id.
+- The injected scenario delays retrieval by 2.5 seconds, so the retrieval child observation is the expected slow span.
+- Temporary mitigation: disable rag_slow; preventive control: HighLatencyP95 alert and Metrics → Logs → Traces runbook.
+
+This file must not be presented as official challenge evidence. Official CP3 still requires the Lab Coach-provided config/challenge.json and a matching Langfuse trace.

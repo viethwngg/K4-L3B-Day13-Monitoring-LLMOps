@@ -31,6 +31,17 @@ Giữ time range mặc định 60 phút, refresh 30 giây và hiển thị thres
 python scripts/validate_dashboard.py
 ```
 
+Repo cũng có dashboard local không cần dependency ngoài. Sau khi có log, chạy:
+
+```powershell
+python scripts/build_dashboard.py
+.\scripts\build_dashboard_image.ps1
+```
+
+Hai lệnh tạo dashboard HTML có thể mở trong trình duyệt và ảnh PNG tại
+`submission/evidence/11-dashboard-overview.*`. Mỗi lần chạy lại workload, hãy
+chạy lại hai lệnh để evidence phản ánh dữ liệu mới nhất.
+
 Validator kiểm tra cấu trúc contract; nó không thể chứng minh biểu đồ trong ảnh dùng đúng dữ liệu. Evidence runtime vẫn bắt buộc.
 
 ## Cách kiểm tra runtime
